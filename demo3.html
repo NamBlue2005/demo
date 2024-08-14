@@ -6,17 +6,38 @@
 </head>
 <body>
 <form id="form">
-    <label><input id="a" type="number"> +</label>
+    <label><input id="a" type="number"></label>
     <label><input id="b" type="number"> =</label>
-    <button type="button" id="ketqua">Kết quả</button>
+    <button type="button" id="ketqua+">+</button>
+    <button type="button" id="ketqua-">-</button>
+    <button type="button" id="ketqua*">*</button>
+    <button type="button" id="ketqua/">/</button>
 </form>
 <p id="result"></p>
 </body>
 <script>
-    document.getElementById('ketqua').onclick = function() {
+    document.getElementById('ketqua+').onclick = function() {
         let a = parseFloat(document.getElementById('a').value);
         let b = parseFloat(document.getElementById('b').value);
         let result = a + b;
+        document.getElementById('result').innerText = "Kết quả là: " + result;
+    }
+    document.getElementById('ketqua-').onclick = function() {
+        let a = parseFloat(document.getElementById('a').value);
+        let b = parseFloat(document.getElementById('b').value);
+        let result = a - b;
+        document.getElementById('result').innerText = "Kết quả là: " + result;
+    }
+    document.getElementById('ketqua*').onclick = function() {
+        let a = parseFloat(document.getElementById('a').value);
+        let b = parseFloat(document.getElementById('b').value);
+        let result = a * b;
+        document.getElementById('result').innerText = "Kết quả là: " + result;
+    }
+    document.getElementById('ketqua/').onclick = function() {
+        let a = parseFloat(document.getElementById('a').value);
+        let b = parseFloat(document.getElementById('b').value);
+        let result = a / b;
         document.getElementById('result').innerText = "Kết quả là: " + result;
     }
 </script>
