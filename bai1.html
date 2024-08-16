@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 1</title>
+</head>
+<body>
+<div id="messageDiv"></div>
+<script>
+    let diem = parseFloat(prompt("Nhập vào điểm của học viên thi cuối module:"));
+    let display;
+    if (diem >= 75){
+        display = "pass module";
+    } else if (diem <75) {
+        display= "Fail module";
+    }
+    alert("" +display)
+</script>
+</body>
+</html>
