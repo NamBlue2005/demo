@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function beautifulArray(arr) {
+        const totalSum = arr.reduce((sum, num) => sum + num, 0);
+        let leftSum = 0;
+
+        for (let i = 0; i < arr.length; i++) {
+            const rightSum = totalSum - leftSum - arr[i];
+
+            if (leftSum === rightSum) {
+                return true;
+            }
+            leftSum += arr[i];
+        }
+
+        return false;
+    }
+
+    console.log(beautifulArray([1, 2, 3]));
+    console.log(beautifulArray([1, 2, 3, 3]));
+</script>
+</body>
+</html>

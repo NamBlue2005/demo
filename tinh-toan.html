@@ -5,26 +5,24 @@
     <title>Title</title>
 </head>
 <body>
-<input type="number" id="a">x  +
-<input type="number" id="b"> = 0
-<button id="ketqua">Kết quả</button>
+<input type="number" placeholder="Nhập a" id="a">x +
+<input type="number" placeholder="Nhập b" id="b"> = 0
+<button id="click">Kết quả</button>
 <p id="result"></p>
 </body>
 <script>
-    document.getElementById('ketqua').onclick = function() {
-        let a = parseFloat(document.getElementById('a').value);
-        let b = parseFloat(document.getElementById('b').value);
+    document.getElementById('click').onclick = function (){
+        let a = document.getElementById('a').value;
+        let b = document.getElementById('b').value;
         let result;
-
-        if (a == 0 && b == 0) {
+        if (a == 0 &&b == 0){
             result = "Phương trình có vô số nghiệm";
-        } else if (a == 0 && b != 0) {
+        } else if (a == 0 && b != 0){
             result = "Phương trình vô nghiệm";
         } else {
-            result = -b / a;
+            result = -b / a
         }
-
-        document.getElementById('result').innerText = "Kết quả là: " + result;
+        document.getElementById('result').innerText = "Kết quả là " +result;
     }
 </script>
 </html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <label>
+        <input id="a" type="number">
+        <input id="b" type="number">
+    </label>
+    <button type="button" onclick="tinhtoan('+')">+</button>
+    <button type="button" onclick="tinhtoan('-')">-</button>
+    <button type="button" onclick="tinhtoan('*')">*</button>
+    <button type="button" onclick="tinhtoan('/')">/</button>
+</form>
+<p id="ketqua"></p>
+<script>
+    function tinhtoan(pheptinh){
+        let a = +document.getElementById('a').value;
+        let b = +document.getElementById('b').value;
+        let ketqua;
+        switch (pheptinh){
+            case '+':
+                ketqua = a + b;
+                break;
+            case '-':
+                ketqua = a - b;
+                break;
+            case '*':
+                ketqua = a * b;
+                break;
+            case '/':
+                ketqua = b !== 0 ? a / b: 'không thể chia cho 0';
+                break;
+        }
+        document.getElementById('ketqua').innerText = "kết quả: "+ketqua;
+    }
+</script>
+</body>
+</html>

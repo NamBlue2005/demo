@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Máy tính đơn giản</title>
+</head>
+<body>
+<form>
+    <input id="a" type="number">
+    <input id="b" type="number">
+    <button type="button" onclick="tinhToan('+')">+</button>
+    <button type="button" onclick="tinhToan('-')">-</button>
+    <button type="button" onclick="tinhToan('*')">*</button>
+    <button type="button" onclick="tinhToan('/')">/</button>
+</form>
+<p id="ketqua"></p>
+<script>
+    function tinhToan(phepTinh) {
+        let a = +document.getElementById('a').value;
+        let b = +document.getElementById('b').value;
+        let ketqua;
+        switch (phepTinh) {
+            case '+':
+                ketqua = a + b;
+                break;
+            case '-':
+                ketqua = a - b;
+                break;
+            case '*':
+                ketqua = a * b;
+                break;
+            case '/':
+                ketqua = b !== 0 ? a / b : 'Không thể chia cho 0';
+                break;
+        }
+        document.getElementById('ketqua').innerText = "Kết quả: " + ketqua;
+    }
+</script>
+</body>
+</html>
