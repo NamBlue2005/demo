@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài thi 1</title>
+</head>
+<body>
+
+<h1 id="result"></h1>
+
+<script>
+    let arr = [];
+    let numElements = parseInt(prompt("Nhập số phần tử (tối đa 50):"));
+
+    if (numElements > 50) {
+        document.getElementById("result").textContent = "Số phần tử vượt quá 50.";
+    } else {
+        for (let i = 0; i < numElements; i++) {
+            arr.push(parseInt(prompt(`Nhập phần tử thứ ${i + 1}:`)));
+        }
+
+        document.getElementById("result").textContent = "Mảng: " + arr.join(", ");
+
+        let sum = 0, count = 0;
+
+        arr.forEach(num => {
+            if (num % 3 === 0) {
+                sum += num;
+                count++;
+            }
+        });
+
+        if (count > 0) {
+            document.getElementById("result").innerText += ` Trung bình cộng các số chia hết cho 3: ${sum / count}`;
+        } else {
+            document.getElementById("result").innerText += " Không có số chia hết cho 3.";
+        }
+    }
+</script>
+
+</body>
+</html>

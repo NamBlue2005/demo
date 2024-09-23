@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Công Nhân</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 { text-align: center; }
+        input, select, button {
+            padding: 10px;
+            margin: 5px 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Quản Lý Công Nhân</h1>
+
+<input type="text" id="searchInput" placeholder="Tìm kiếm công nhân theo tên..." oninput="searchWorkers()">
+
+<form id="addWorkerForm">
+    <input type="text" id="workerName" placeholder="Họ và tên" required>
+    <input type="date" id="workerDob" required>
+    <input type="text" id="workerAddress" placeholder="Địa chỉ" required>
+    <input type="number" id="workerSalary" placeholder="Lương" required>
+    <input type="text" id="workerPosition" placeholder="Chức vụ" required>
+    <button type="submit">Thêm Công Nhân</button>
+</form>
+
+<table id="workerTable">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Họ Tên</th>
+        <th>Ngày Sinh</th>
+        <th>Địa Chỉ</th>
+        <th>Lương</th>
+        <th>Chức Vụ</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<script>
+    class Worker {
+        constructor(id, name, dob, address, salary, position) {
+            this.id = id;
+            this.name = name;
+            this.dob = dob;
+            this.address = address;
+            this.salary = salary;
+            this.position = position;
+        }
+    }
+
+    class WorkerManagement {
+        constructor() {
+            this.workers = [];
+            document.getElementById('addWorkerForm').addEventListener('submit', (event) => this.addWorker(event));
+        }
+
+        addWorker(event) {
+            event.preventDefault();
+            const id = this.workers.length + 1;
+            const worker = new Worker(
+                id,
+                document.getElementById('workerName').value,
+                document.getElementById('workerDob').value,
+                document.getElementById('workerAddress').value,
+                document.getElementById('workerSalary').value,
+                document.getElementById('workerPosition').value
+            );
+            this.workers.push(worker);
+            this.displayWorkers();
+            document.getElementById('addWorkerForm').reset();
+        }
+
+        displayWorkers() {
+            const tbody = document.querySelector('#workerTable tbody');
+            tbody.innerHTML = '';
+            this.workers.sort((a, b) => a.name.localeCompare(b.name)).forEach(worker => {
+                tbody.innerHTML += `
+                <tr>
+                    <td>${worker.id}</td>
+                    <td>${worker.name}</td>
+                    <td>${worker.dob}</td>
+                    <td>${worker.address}</td>
+                    <td>${worker.salary}</td>
+                    <td>${worker.position}</td>
+                    <td><button onclick="management.deleteWorker(${worker.id})">Xóa</button></td>
+                </tr>`;
+            });
+        }
+
+        deleteWorker(id) {
+            this.workers = this.workers.filter(worker => worker.id !== id);
+            this.displayWorkers();
+        }
+    }
+
+    const management = new WorkerManagement();
+
+    function searchWorkers() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const filteredWorkers = management.workers.filter(worker => worker.name.toLowerCase().includes(searchInput));
+
+        const tbody = document.querySelector('#workerTable tbody');
+        tbody.innerHTML = '';
+        filteredWorkers.sort((a, b) => a.name.localeCompare(b.name)).forEach(worker => {
+            tbody.innerHTML += `
+            <tr>
+                <td>${worker.id}</td>
+                <td>${worker.name}</td>
+                <td>${worker.dob}</td>
+                <td>${worker.address}</td>
+                <td>${worker.salary}</td>
+                <td>${worker.position}</td>
+                <td><button onclick="management.deleteWorker(${worker.id})">Xóa</button></td>
+            </tr>`;
+        });
+    }
+
+</script>
+</body>
+</html>

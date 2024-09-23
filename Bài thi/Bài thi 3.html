@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 3</title>
+</head>
+<body>
+<script>
+    // isLeapYear(year): Kiểm tra xem năm có phải là năm nhuận hay không.
+    // getDaysInMonth(month, year): Trả về số ngày trong tháng cụ thể.
+    // isValidInput(month, year): Kiểm tra tính hợp lệ của tháng và năm.
+    // inputAndCalculateDays(): Nhập dữ liệu từ người dùng, kiểm tra tính hợp lệ và in kết quả.
+    function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+    }
+
+    function getDaysInMonth(month, year) {
+        const daysInMonth = [31, isLeapYear(year) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        return daysInMonth[month - 1];
+    }
+
+    function inputAndCalculateDays() {
+        const input = prompt("Nhập tháng và năm theo định dạng MM/yyyy:");
+        const [month, year] = input.split('/').map(Number);
+
+        if (isValidInput(month, year)) {
+            const days = getDaysInMonth(month, year);
+            console.log(`Tháng ${month}/${year} có ${days} ngày.`);
+        } else {
+            console.log("Định dạng không hợp lệ. Vui lòng nhập theo định dạng MM/yyyy.");
+        }
+    }
+
+    function isValidInput(month, year) {
+        return month >= 1 && month <= 12 && year > 0;
+    }
+
+    inputAndCalculateDays();
+
+</script>
+</body>
+</html>
