@@ -10,16 +10,16 @@
 
 <script>
     let arr = [];
-    let numElements = parseInt(prompt("Nhập số phần tử (tối đa 50):"));
+    let numElements = 1*prompt("Nhập số phần tử (tối đa 50):");
 
     if (numElements > 50) {
-        document.getElementById("result").textContent = "Số phần tử vượt quá 50.";
+        document.getElementById("result").innerText = "Số phần tử vượt quá 50.";
     } else {
         for (let i = 0; i < numElements; i++) {
             arr.push(parseInt(prompt(`Nhập phần tử thứ ${i + 1}:`)));
         }
 
-        document.getElementById("result").textContent = "Mảng: " + arr.join(", ");
+        document.getElementById("result").innerText = "Mảng: " + arr.join(", ");
 
         let sum = 0, count = 0;
 
